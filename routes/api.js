@@ -1,6 +1,7 @@
 const express = require('express');
 
 
+
 const router = express.Router();
 //get a list from db
 router.get('/ninjas', function(req, res){
