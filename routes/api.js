@@ -4,9 +4,11 @@ const Quote = require('../models/quotes');
 
 const router = express.Router();
 //get a list from db
-router.get('/quotes/:id', function(req, res, next){
+router.get('/quotes/:author', function(req, res, next){
     Quote.find({}).then(function(quotes){
-        res.send('mooi');
+        Quote.findOne({author: req.params.author}).then(function(quote){
+            res.send(quote);
+        });
     });
 });
 

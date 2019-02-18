@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 //create schema & model
 
 const QuoteSchema = new Schema({
-    name: {
+    quote: {
         type: String,
-        required: [true, 'Name field required']
+        required: [true, 'quote input required']
     },
 
     author: {
