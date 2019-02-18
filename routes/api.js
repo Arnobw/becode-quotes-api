@@ -19,13 +19,20 @@ router.post('/ninjas', function(req, res, next){
 
 //edit item in db
 router.put('/ninjas/:id', function(req, res, next){
-res.send({type:'PUT'});
+    Ninja.findOneAndUpdate({_id: req.params.id}, req.body ).then(function(){
+      Ninja.findOne({_id: req.params.id}).then(function(ninja){
+          res.send(ninja);
+      })
+    })
+    res.send({type:'PUT'});
  });
 
 //delete item from db
 router.delete('/ninjas/:id', function(req, res, next){
-   console.log( req.params.id);
-    res.send({type:'DEL'});
+   Ninja.findOneAndDelete({_id: req.params.id}).then(function(ninja){
+   res.send(ninja);    
+   })
+ 
  });
 
 
