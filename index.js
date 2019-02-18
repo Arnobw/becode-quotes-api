@@ -7,7 +7,7 @@ const mongoose = require ('mongoose');
 const app = express();
 
 //connect mongoDB
-mongoose.connect('mongodb://localhost/ninjago', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/quotes', { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());

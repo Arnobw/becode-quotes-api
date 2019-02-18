@@ -1,36 +1,44 @@
 const express = require('express');
 
-const Ninja = require('../models/ninja');
+const Quote = require('../models/quotes');
 
 const router = express.Router();
 //get a list from db
-router.get('/ninjas', function(req, res, next){
-res.send({type:'GET'});
+router.get('/quotes/:id', function(req, res, next){
+    Quote.find({}).then(function(quotes){
+        res.send('mooi');
+    });
+});
+
+
+router.get('/quotes', function(req, res, next){
+    Quote.find({}).then(function(quotes){
+        res.send(quotes);
+    });
 });
 
 //add new item to db and send back
-router.post('/ninjas', function(req, res, next){
-    Ninja.create(req.body).then(function(ninja){
-        res.send(ninja);
+router.post('/quotes', function(req, res, next){
+    Quote.create(req.body).then(function(quote){
+        res.send(quote);
 
     }).catch(next);
 });
 
 
-//edit item in db
-router.put('/ninjas/:id', function(req, res, next){
-    Ninja.findOneAndUpdate({_id: req.params.id}, req.body ).then(function(){
-      Ninja.findOne({_id: req.params.id}).then(function(ninja){
-          res.send(ninja);
-      })
-    })
-    res.send({type:'PUT'});
- });
+// update a quote in the db
+router.put('/quotes/:id', function(req, res, next){
+    Quote.findOneAndUpdate({_id: req.params.id}, req.body, {new: true}).then(function(){
+        Quote.findOne({_id: req.params.id}).then(function(quote){
+            res.send(quote);
+        });
+    }).catch(next);
+});
 
 //delete item from db
-router.delete('/ninjas/:id', function(req, res, next){
-   Ninja.findOneAndDelete({_id: req.params.id}).then(function(ninja){
-   res.send(ninja);    
+router.delete('/quotes/:id', function(req, res, next){
+   Quote.findOneAndDelete({_id: req.params.id}).then(function(quote){
+   res.send(quote);    
    })
  
  });

@@ -3,23 +3,23 @@ const Schema = mongoose.Schema;
 
 //create schema & model
 
-const NinjaSchema = new Schema({
+const QuoteSchema = new Schema({
     name: {
         type: String,
         required: [true, 'Name field required']
     },
 
-    rank: {
+    author: {
         type:String
     },
 
-    available: {
-        type: Boolean,
-        default: false
+    date: {
+        type: Number,
+       
     }
 
-    //add in geo
+  
 });
 
-const Ninja = mongoose.model('ninja', NinjaSchema);
-module.exports = Ninja;
+const Quote = mongoose.model('quote', QuoteSchema);
+module.exports = Quote;
