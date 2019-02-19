@@ -1,7 +1,10 @@
+
+
 body {
     font-family: 'Raleway', sans-serif;
     background-image: url('./img/bg.jpg');
     background-size: cover;
+   
     
 }
 
@@ -19,7 +22,10 @@ body {
     width: 50%;
     text-align: center;
     outline:solid 1px black;
-    padding:10px;
+   padding:10px;
+   
+   
+  
 }
 
 #quotelijst {
@@ -30,7 +36,9 @@ body {
     text-align:center;
     background-color:	#03C0DA;
     font-size: 30px;
+ 
 
+  
 
 }
 
@@ -70,4 +78,20 @@ h1 {
     margin-bottom:10px;
     border:solid 2px blue;
     padding:5px;
+}
+
+
+a {
+    text-decoration: inherit;
+}
+
+
+.naamlijst {
+    cursor: default;
+    overflow:hidden;
+    
+}
+
+.naamlijst p:hover{
+    background-color: -webkit-linear-gradient(#F06C13, #F0E613);
 }
