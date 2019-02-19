@@ -1,5 +1,25 @@
 $('#foto').hide();
+$('#input').hide();
 
+
+
+$('#btnAuth').click(function(){
+    $('#input').show();
+    $('#btnAuth, #btnRand, #btnQuo').hide();
+});
+
+
+$('#btnRand, #foto').click(function(){
+    $('#btnAuth, #btnRand, #btnQuo').hide();
+    $.get('http://localhost:4000/api/quotes', function(data){
+        const randje = Array.from(data);
+        let r = Math.floor(Math.random()*randje.length);
+        $('#quotelijst').empty();
+        $('#quotelijst').append('<li>' + randje[r].quote + " </li>" +  "<p>" + "- " + randje[r].author + "</p>"   );
+        $('#foto').show();
+        $('#foto').css('background-image', "url('../img/" + randje[r].author + ".jpg')");
+    })
+});
 
 $('#input').keydown(function(e){
  
