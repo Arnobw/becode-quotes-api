@@ -19,6 +19,7 @@ body {
     width: 50%;
     text-align: center;
     outline:solid 1px black;
+    padding:10px;
 }
 
 #quotelijst {
@@ -52,4 +53,13 @@ h1 {
   -webkit-text-stroke: 2px blue;
   font-size:50px;
   font-family: 'Anton', sans-serif;
+}
+
+#foto {
+    background-size:cover;
+    width:50%;
+    height:200px;
+    margin:0 auto;
+    outline: solid 2px blue;
+    
 }

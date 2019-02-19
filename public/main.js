@@ -1,5 +1,4 @@
-
-
+$('#foto').hide();
 
 
 $('#input').keydown(function(e){
@@ -11,21 +10,16 @@ $('#input').keydown(function(e){
         $("#container").slideDown();
       
         $.get('http://localhost:4000/api/quotes/' + naam, function(data){
-           
+          $('#foto').show();
+        $('#foto').css('background-image', "url('../img/" + naam + ".jpg')") 
        data.forEach(quotee => {
         //    var l = document.createElement("li");
         //    l.value = quotee.quote;
            $('#quotelijst').append('<li>' + quotee.quote + " </li>" +  "<p>" + "- " + quotee.author + "</p>"   );
-      
+           
         });
         console.log(naam);
-        // if(naam == "Samson"){
-        //     $('body').css('background-image', 'url("../img/bg2.png")');
-        //     $('body').css('background-size', 'auto');
-        //     $('body').css('background-repeat', 'repeat');
-        // } else {
-        //     $('body').css('background-image', 'url("../img/bg.jpg")');
-        // }
+      
     })
  }
 });
