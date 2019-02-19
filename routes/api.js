@@ -6,7 +6,7 @@ const router = express.Router();
 //get a list from db
 router.get('/quotes/:author', function(req, res, next){
     Quote.find({}).then(function(quotes){
-        Quote.findOne({author: req.params.author}).then(function(quote){
+        Quote.find({author: req.params.author}).then(function(quote){
             res.send(quote);
         });
     });
