@@ -4,24 +4,26 @@ const Quote = require('../models/quotes');
 
 const router = express.Router();
 //get a list from db
-router.get('/quotes/:author', function(req, res, next){
-    Quote.find({}).then(function(quotes){
-        Quote.find({author: req.params.author}).then(function(quote){
+router.get('/quotes/:author', function (req, res, next) {
+    Quote.find({}).then(function (quotes) {
+        Quote.find({
+            author: req.params.author
+        }).then(function (quote) {
             res.send(quote);
         });
-    });
+    }).catch(next);
 });
 
 
-router.get('/quotes', function(req, res, next){
-    Quote.find({}).then(function(quotes){
+router.get('/quotes', function (req, res, next) {
+    Quote.find({}).then(function (quotes) {
         res.send(quotes);
     });
 });
 
 //add new item to db and send back
-router.post('/quotes', function(req, res, next){
-    Quote.create(req.body).then(function(quote){
+router.post('/quotes', function (req, res, next) {
+    Quote.create(req.body).then(function (quote) {
         res.send(quote);
 
     }).catch(next);
@@ -29,22 +31,30 @@ router.post('/quotes', function(req, res, next){
 
 
 // update a quote in the db
-router.put('/quotes/:id', function(req, res, next){
-    Quote.findOneAndUpdate({_id: req.params.id}, req.body, {new: true}).then(function(){
-        Quote.findOne({_id: req.params.id}).then(function(quote){
+router.put('/quotes/:id', function (req, res, next) {
+    Quote.findOneAndUpdate({
+        _id: req.params.id
+    }, req.body, {
+        new: true
+    }).then(function () {
+        Quote.findOne({
+            _id: req.params.id
+        }).then(function (quote) {
             res.send(quote);
         });
     }).catch(next);
 });
 
 //delete item from db
-router.delete('/quotes/:id', function(req, res, next){
-   Quote.findOneAndDelete({_id: req.params.id}).then(function(quote){
-   res.send(quote);    
-   })
- 
- });
+router.delete('/quotes/:id', function (req, res, next) {
+    Quote.findOneAndDelete({
+        _id: req.params.id
+    }).then(function (quote) {
+        res.send(quote);
+    })
+
+});
 
 
 
- module.exports = router;
+module.exports = router;

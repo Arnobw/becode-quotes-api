@@ -1,4 +1,4 @@
-const mongoose = require ('mongoose');
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //create schema & model
@@ -10,15 +10,15 @@ const QuoteSchema = new Schema({
     },
 
     author: {
-        type:String
+        type: String
     },
 
     date: {
         type: Number,
-       
+
     }
 
-  
+
 });
 
 const Quote = mongoose.model('quote', QuoteSchema);

@@ -1,15 +1,38 @@
 body {
     font-family: 'Raleway', sans-serif;
-
+    background-image: url('./img/bg.jpg');
+    background-size: cover;
 }
 
 
 #container {
-    background:lightblue;
+    background: lightblue;
+    display:flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
 }
 
-#quotelijst{
+#quotelijst {
     color: #000000;
     background: #FFFFFF;
     text-shadow: 2px 2px 0 #bcbcbc, 4px 4px 0 #9c9c9c;
+    list-style-type: none;
+    text-align:center;
+    background-color: lightblue;
+    font-size: 30px;
+
+
+}
+
+/* #quotelijst li {
+    margin-bottom:10px;
+} */
+
+
+#quotelijst p {
+    margin-top:0;
+    font-size:15px;
+    
 }

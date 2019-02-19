@@ -4,7 +4,7 @@
 
 $('#input').keydown(function(e){
  
-   let naam = $('#input').val();
+   let naam = $('option').val();
     if (e.which === 13) {
         $('#quotelijst').empty();
         $("#container").hide();
@@ -14,7 +14,7 @@ $('#input').keydown(function(e){
        data.forEach(quotee => {
         //    var l = document.createElement("li");
         //    l.value = quotee.quote;
-           $('#quotelijst').append('<li>' + quotee.quote + " </li>");
+           $('#quotelijst').append('<li>' + quotee.quote + " </li>" +  "<p>" + "- " + quotee.author + "</p>"   );
        });
         console.log(naam);
     })
