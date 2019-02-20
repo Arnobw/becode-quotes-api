@@ -3,12 +3,20 @@ const express = require('express');
 const Quote = require('../models/quotes');
 
 const router = express.Router();
-//search quote per author
+//search quote by specific author
 router.get('/quotes/:author', (req, res, next) => {
     Quote.find({author: { $regex: req.params.author, $options: 'i'}}, (err, quotes) => {
         res.send(quotes)
     }).catch(err => console.log(err))
 });
+
+//get all quotes containing keywords
+router.get('/quotes/quote/:quote', function (req, res, next){
+    Quote.find({quote: {$regex: req.params.quote, $options:'i'}}, function (err, quotes){
+        res.send(quotes);
+    }).catch(err => console.log(err));
+    
+    });
 
 
 router.get('/quotes', function (req, res, next) {
@@ -16,6 +24,8 @@ router.get('/quotes', function (req, res, next) {
         res.send(quotes);
     });
 });
+
+
 
 //add new item to db and send back
 router.post('/quotes', function (req, res, next) {

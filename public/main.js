@@ -1,6 +1,19 @@
 $('#foto, #foto2').hide();
 $('#input').hide();
+//vult de datalist aan met elke author in de database en skipped elke dubbele entry;
+$.get('http://localhost:4000/api/quotes', function (data) {
+    let namen = Array.from(data);
+    for (i = 0; i < namen.length; i++) {
+        let j = i - 1;
+        if (i > 0) {
+            if (namen[i].author !== namen[j].author) {
 
+                $('#namen').append("<option value='" + namen[i].author + "'>" + "</option>")
+            }
+
+        }
+    }
+})
 
 
 $('#btnAuth').click(function () {
@@ -23,50 +36,72 @@ function randomQuote() {
 
 $('#btnRand, #foto2').click(randomQuote);
 
-function quoteZoeken() {
 
+// episch de backend werkt gewoon echt
+function quoteZoeken() {
     $('#namen').empty();
     $('#btnAuth, #btnRand, #btnQuo').hide();
     $('#input').show();
+    let naam = $('#input').val();
     $('#input').keydown(function (e) {
         if (e.which === 13) {
             $('#foto').show();
-            $('#foto').css('background-image', "url('../img/huis.jpg')")
-            $.get("http://localhost:4000/api/quotes", function (data) {
-
-                $('#quotelijst').empty();
-                data.forEach(quotee => {
-                    if (quotee.quote.toLowerCase().indexOf($("#input").val().toLowerCase()) != -1) {
-
-
-                        $('#quotelijst').append('<li>' + quotee.quote + " </li>" + "<p class='lijstnaam' id='" + quotee.author + "'>" + "- " + quotee.author + "</p>");
-                    }
-                });
+            $('#foto').css('background-image', "url('../img/huis.jpg')");
+            $.get('http://localhost:4000/api/quotes/quote/' + naam, function (data) {
+            data.forEach(quotee => {
+            $('#quotelijst').append('<li>' + quotee.quote + " </li>" + "<p class='lijstnaam' id='" + quotee.author + "'>" + "- " + quotee.author + "</p>");
+});
             })
         }
-
-    });
-
-    $('#quotelijst').on('click', '.lijstnaam', function () {
-
-        let clicked = (this).id;
-
-        $('#foto').css('background-image', "url('../img/" + clicked + ".jpg')")
-        $('#quotelijst').empty();
-        $.get("http://localhost:4000/api/quotes/" + clicked, function (data) {
+    })
+}
 
 
-            data.forEach(quotee => {
-                $('#quotelijst').append('<li>' + quotee.quote + " </li>" + "<p>" + "- " + quotee.author + "</p>");
+//FRONT END SEARCH XD
+// function quoteZoeken() {
+
+//     $('#namen').empty();
+//     $('#btnAuth, #btnRand, #btnQuo').hide();
+//     $('#input').show();
+//     $('#input').keydown(function (e) {
+//         if (e.which === 13) {
+//             $('#foto').show();
+//             $('#foto').css('background-image', "url('../img/huis.jpg')")
+//             $.get("http://localhost:4000/api/quotes", function (data) {
+
+//                 $('#quotelijst').empty();
+//                 data.forEach(quotee => {
+//                     if (quotee.quote.toLowerCase().indexOf($("#input").val().toLowerCase()) != -1) {
 
 
-            })
+//                         $('#quotelijst').append('<li>' + quotee.quote + " </li>" + "<p class='lijstnaam' id='" + quotee.author + "'>" + "- " + quotee.author + "</p>");
+//                     }
+//                 });
+//             })
+//         }
 
-        });
-    });
+//     });
+
+//     $('#quotelijst').on('click', '.lijstnaam', function () {
+
+//         let clicked = (this).id;
+
+//         $('#foto').css('background-image', "url('../img/" + clicked + ".jpg')")
+//         $('#quotelijst').empty();
+//         $.get("http://localhost:4000/api/quotes/" + clicked, function (data) {
 
 
-};
+//             data.forEach(quotee => {
+//                 $('#quotelijst').append('<li>' + quotee.quote + " </li>" + "<p>" + "- " + quotee.author + "</p>");
+
+
+//             })
+
+//         });
+//     });
+
+
+//};
 $("#btnQuo").click(quoteZoeken);
 
 function naamZoeken() {
@@ -89,13 +124,13 @@ function naamZoeken() {
                     $('#foto').css('background-image', "url('../img/" + data[0].author + ".gif')");
 
                     //sorteer tijd
-                    
-                        data.forEach(quotee => {
-                            //    var l = document.createElement("li");
-                            //    l.value = quotee.quote;
-                            $('#quotelijst').append('<li>' + quotee.quote + " </li>" + "<p>" + "- " + quotee.author + "</p>");
 
-                        });
+                    data.forEach(quotee => {
+                        //    var l = document.createElement("li");
+                        //    l.value = quotee.quote;
+                        $('#quotelijst').append('<li>' + quotee.quote + " </li>" + "<p>" + "- " + quotee.author + "</p>");
+
+                    });
 
                 }
             })
