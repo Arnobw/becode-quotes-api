@@ -9,7 +9,7 @@ $('#btnAuth').click(function () {
 });
 
 
-function randomQuote () {
+function randomQuote() {
     $('#btnAuth, #btnRand, #btnQuo').hide();
     $.get('http://localhost:4000/api/quotes', function (data) {
         let randje = Array.from(data);
@@ -23,28 +23,28 @@ function randomQuote () {
 
 $('#btnRand, #foto2').click(randomQuote);
 
-function quoteZoeken () {
-    
+function quoteZoeken() {
+
     $('#namen').empty();
     $('#btnAuth, #btnRand, #btnQuo').hide();
     $('#input').show();
     $('#input').keydown(function (e) {
         if (e.which === 13) {
             $('#foto').show();
-            $('#foto').css('background-image', "url('../img/huis.jpg')")  
-        $.get("http://localhost:4000/api/quotes", function (data) {
+            $('#foto').css('background-image', "url('../img/huis.jpg')")
+            $.get("http://localhost:4000/api/quotes", function (data) {
 
-            $('#quotelijst').empty();
-            data.forEach(quotee => {
-                if (quotee.quote.toLowerCase().indexOf($("#input").val().toLowerCase()) != -1) {
+                $('#quotelijst').empty();
+                data.forEach(quotee => {
+                    if (quotee.quote.toLowerCase().indexOf($("#input").val().toLowerCase()) != -1) {
 
 
-                    $('#quotelijst').append('<li>' + quotee.quote + " </li>" + "<p class='lijstnaam' id='" + quotee.author + "'>" + "- " + quotee.author + "</p>");
-                }
-            });
-        })
-    }
-   
+                        $('#quotelijst').append('<li>' + quotee.quote + " </li>" + "<p class='lijstnaam' id='" + quotee.author + "'>" + "- " + quotee.author + "</p>");
+                    }
+                });
+            })
+        }
+
     });
 
     $('#quotelijst').on('click', '.lijstnaam', function () {
@@ -69,35 +69,37 @@ function quoteZoeken () {
 };
 $("#btnQuo").click(quoteZoeken);
 
-function naamZoeken () {
-$('#input').keydown(function (e) {
+function naamZoeken() {
+    $('#input').keydown(function (e) {
 
-    let naam = $('#input').val();
-    if (e.which === 13) {
-        $('#quotelijst').empty();
-        $("#container").hide();
-        $("#container").slideDown();
+        let naam = $('#input').val();
+        if (e.which === 13) {
+            $('#quotelijst').empty();
+            $("#container").hide();
+            $("#container").slideDown();
 
-        $.get('http://localhost:4000/api/quotes/' + naam, function (data) {
-            
-            if (data.length == 0) {
-                $('#quotelijst').append("<li>"+ "Ja lap zeg, die woont toch niet in het dorp?" +"</li>")
-                $('#foto').show();
-                $('#foto').css('background-image', "url('../img/ramp.gif')");
-            } else {
-            $('#foto').show();
-            $('#foto').css('background-image', "url('../img/" + naam + ".gif')");
-       
-            data.forEach(quotee => {
-                //    var l = document.createElement("li");
-                //    l.value = quotee.quote;
-                $('#quotelijst').append('<li>' + quotee.quote + " </li>" + "<p>" + "- " + quotee.author + "</p>");
+            $.get('http://localhost:4000/api/quotes/' + naam, function (data) {
 
-            });
-           
-}
-        })
-    }
-})
+                if (data.length == 0) {
+                    $('#quotelijst').append("<li>" + "Ja lap zeg, die woont toch niet in het dorp?" + "</li>")
+                    $('#foto').show();
+                    $('#foto').css('background-image', "url('../img/ramp.gif')");
+                } else {
+                    $('#foto').show();
+                    $('#foto').css('background-image', "url('../img/" + data[0].author + ".gif')");
+
+                    //sorteer tijd
+                    
+                        data.forEach(quotee => {
+                            //    var l = document.createElement("li");
+                            //    l.value = quotee.quote;
+                            $('#quotelijst').append('<li>' + quotee.quote + " </li>" + "<p>" + "- " + quotee.author + "</p>");
+
+                        });
+
+                }
+            })
+        }
+    })
 };
 $('#btnAuth').click(naamZoeken);

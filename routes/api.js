@@ -3,9 +3,9 @@ const express = require('express');
 const Quote = require('../models/quotes');
 
 const router = express.Router();
-//get a list from db
+//search quote per author
 router.get('/quotes/:author', (req, res, next) => {
-    Quote.find({author: req.params.author}, (err, quotes) => {
+    Quote.find({author: { $regex: req.params.author, $options: 'i'}}, (err, quotes) => {
         res.send(quotes)
     }).catch(err => console.log(err))
 });
