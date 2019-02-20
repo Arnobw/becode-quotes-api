@@ -1,19 +1,20 @@
 $('#foto, #foto2').hide();
 $('#input').hide();
+
 //vult de datalist aan met elke author in de database en skipped elke dubbele entry;
 $.get('http://localhost:4000/api/quotes', function (data) {
     let namen = Array.from(data);
     for (i = 0; i < namen.length; i++) {
-        let j = i - 1;
+        
         if (i > 0) {
-            if (namen[i].author !== namen[j].author) {
+            if (namen[i].author !== namen[(i-1)].author) {
 
                 $('#namen').append("<option value='" + namen[i].author + "'>" + "</option>")
             }
 
         }
     }
-})
+});
 
 
 $('#btnAuth').click(function () {
@@ -39,22 +40,27 @@ $('#btnRand, #foto2').click(randomQuote);
 
 // episch de backend werkt gewoon echt
 function quoteZoeken() {
-    $('#namen').empty();
-    $('#btnAuth, #btnRand, #btnQuo').hide();
-    $('#input').show();
-    let naam = $('#input').val();
-    $('#input').keydown(function (e) {
+  
+$('#btnAuth, #btnRand, #btnQuo').hide();
+$('#input').show();
+
+$('#input').keydown(function (e) {
         if (e.which === 13) {
+            
+            let naam = $('#input').val();
+            $('#quotelijst').empty();
             $('#foto').show();
             $('#foto').css('background-image', "url('../img/huis.jpg')");
             $.get('http://localhost:4000/api/quotes/quote/' + naam, function (data) {
+                console.log(data);
             data.forEach(quotee => {
             $('#quotelijst').append('<li>' + quotee.quote + " </li>" + "<p class='lijstnaam' id='" + quotee.author + "'>" + "- " + quotee.author + "</p>");
-});
+            });
             })
         }
     })
-}
+};
+$("#btnQuo").click(quoteZoeken);
 
 
 //FRONT END SEARCH XD
@@ -102,7 +108,7 @@ function quoteZoeken() {
 
 
 //};
-$("#btnQuo").click(quoteZoeken);
+
 
 function naamZoeken() {
     $('#input').keydown(function (e) {

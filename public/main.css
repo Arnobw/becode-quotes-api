@@ -1,38 +1,35 @@
-
-
 body {
     font-family: 'Raleway', sans-serif;
     background-image: url('./img/bg.jpg');
     background-size: cover;
     background-attachment: fixed;
-    
+
 }
 
 #input {
-    width:50%;
-    margin:0 auto;
+    width: 50%;
+    margin: 0 auto;
     text-align: center;
-    
+
 }
 
 #input:focus {
-    border:solid 1px blue;
-    padding:7.5px;
+    border: solid 1px blue;
+    padding: 7.5px;
 }
 
 
 #container {
-    background-color: 	#03C0DA;
-    display:flex;
+    background-color: #03C0DA;
+    display: flex;
     flex-direction: column;
     margin: 0 auto;
     width: 50%;
     text-align: center;
-    border:solid 3px blue;
-   padding:10px;
-   
-   border-radius:15px;
-  
+    border: solid 3px blue;
+    padding: 10px;
+    border-radius: 15px;
+
 }
 
 #quotelijst {
@@ -40,51 +37,53 @@ body {
     background: #FFFFFF;
     text-shadow: 2px 2px 0 #bcbcbc, 2px 2px 0 white;
     list-style-type: none;
-    text-align:center;
-    background-color:	#03C0DA;
+    text-align: center;
+    background-color: #03C0DA;
     font-size: 30px;
- 
 
-  
+
+
 
 }
 
-/* #quotelijst li {
-    margin-bottom:10px;
-} */
+
 
 
 #quotelijst p {
-    margin-top:0;
-    font-size:15px;
-    
+    margin-top: 0;
+    font-size: 15px;
+
 }
 
 
 h1 {
     background: -webkit-linear-gradient(#F06C13, #F0E613);
     -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 2px blue;
-  font-size:50px;
-  font-family: 'Anton', sans-serif;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2px blue;
+    font-size: 50px;
+    font-family: 'Anton', sans-serif;
 }
 
-#foto, #foto2 {
-    background-size:cover;
-    width:50%;
-    height:220px;
-    margin:0 auto;
+#foto,
+#foto2 {
+    background-size: cover;
+    width: 50%;
+    height: 220px;
+    margin: 0 auto;
     outline: solid 2px blue;
-    
+    margin-bottom:15px;
+
 }
 
-#btnAuth, #btnRand, #btnQuo {
-    width:50%;
-    margin:0 auto;
-    margin-bottom:10px;
-    border:solid 2px blue;
-    padding:5px;
+#btnAuth,
+#btnRand,
+#btnQuo {
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    border: solid 2px blue;
+    padding: 5px;
 }
 
 
@@ -95,10 +94,7 @@ a {
 
 .naamlijst {
     cursor: default;
-    overflow:hidden;
-    
+    overflow: hidden;
+
 }
 
-.naamlijst p:hover{
-    background-color: -webkit-linear-gradient(#F06C13, #F0E613);
-}
