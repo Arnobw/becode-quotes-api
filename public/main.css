@@ -4,13 +4,20 @@ body {
     font-family: 'Raleway', sans-serif;
     background-image: url('./img/bg.jpg');
     background-size: cover;
-   
+    background-attachment: fixed;
     
 }
 
 #input {
     width:50%;
     margin:0 auto;
+    text-align: center;
+    
+}
+
+#input:focus {
+    border:solid 1px blue;
+    padding:7.5px;
 }
 
 
@@ -21,10 +28,10 @@ body {
     margin: 0 auto;
     width: 50%;
     text-align: center;
-    outline:solid 1px black;
+    border:solid 3px blue;
    padding:10px;
    
-   
+   border-radius:15px;
   
 }
 
@@ -63,10 +70,10 @@ h1 {
   font-family: 'Anton', sans-serif;
 }
 
-#foto {
+#foto, #foto2 {
     background-size:cover;
     width:50%;
-    height:200px;
+    height:220px;
     margin:0 auto;
     outline: solid 2px blue;
     

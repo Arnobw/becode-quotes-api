@@ -1,4 +1,4 @@
-$('#foto').hide();
+$('#foto, #foto2').hide();
 $('#input').hide();
 
 
@@ -16,12 +16,12 @@ function randomQuote () {
         let r = Math.floor(Math.random() * randje.length);
         $('#quotelijst').empty();
         $('#quotelijst').append('<li>' + randje[r].quote + " </li>" + "<p>" + "- " + randje[r].author + "</p>");
-        $('#foto').show();
-        $('#foto').css('background-image', "url('../img/" + randje[r].author + ".jpg')");
+        $('#foto2').show();
+        $('#foto2').css('background-image', "url('../img/" + randje[r].author + ".jpg')");
     })
 };
 
-$('#btnRand, #foto').click(randomQuote);
+$('#btnRand, #foto2').click(randomQuote);
 
 function quoteZoeken () {
     
@@ -79,18 +79,25 @@ $('#input').keydown(function (e) {
         $("#container").slideDown();
 
         $.get('http://localhost:4000/api/quotes/' + naam, function (data) {
+            
+            if (data.length == 0) {
+                $('#quotelijst').append("<li>"+ "Ja lap zeg, die woont toch niet in het dorp?" +"</li>")
+                $('#foto').show();
+                $('#foto').css('background-image', "url('../img/ramp.gif')");
+            } else {
             $('#foto').show();
-            $('#foto').css('background-image', "url('../img/" + naam + ".jpg')")
+            $('#foto').css('background-image', "url('../img/" + naam + ".gif')");
+       
             data.forEach(quotee => {
                 //    var l = document.createElement("li");
                 //    l.value = quotee.quote;
                 $('#quotelijst').append('<li>' + quotee.quote + " </li>" + "<p>" + "- " + quotee.author + "</p>");
 
             });
-            console.log(naam);
-
+           
+}
         })
     }
 })
 };
-$('#btn').click(naamZoeken);
+$('#btnAuth').click(naamZoeken);
