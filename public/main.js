@@ -17,7 +17,7 @@ function randomQuote () {
         $('#quotelijst').empty();
         $('#quotelijst').append('<li>' + randje[r].quote + " </li>" + "<p>" + "- " + randje[r].author + "</p>");
         $('#foto2').show();
-        $('#foto2').css('background-image', "url('../img/" + randje[r].author + ".jpg')");
+        $('#foto2').css('background-image', "url('../img/" + randje[r].author + ".gif')");
     })
 };
 
