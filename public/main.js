@@ -25,15 +25,15 @@ $('#btnAuth').click(function () {
 
 function randomQuote() {
     $('#btnAuth, #btnRand, #btnQuo').hide();
-    $.get('http://localhost:4000/api/quotes', function (data) {
-        let randje = Array.from(data);
-        let r = Math.floor(Math.random() * randje.length);
+    $.get('http://localhost:4000/api/quotes/random/r', function (data) {
+        // let randje = Array.from(data);
+        // let r = Math.floor(Math.random() * randje.length);
         $('#quotelijst').empty();
-        $('#quotelijst').append('<li>' + randje[r].quote + " </li>" + "<p>" + "- " + randje[r].author + "</p>");
+        $('#quotelijst').append('<li>' + data.quote + " </li>" + "<p>" + "- " + data.author + "</p>");
         $('#foto2').show();
-        $('#foto2').css('background-image', "url('../img/" + randje[r].author + ".gif')");
+        $('#foto2').css('background-image', "url('../img/" + data.author + ".gif')");
     })
-};
+}
 
 $('#btnRand, #foto2').click(randomQuote);
 
