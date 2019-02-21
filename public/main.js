@@ -3,19 +3,21 @@ $('#input').hide();
 
 //vult de datalist aan met elke author in de database en skipped elke dubbele entry;
 $.get('http://localhost:4000/api/quotes', function (data) {
-    let namen = Array.from(data);
-    for (i = 0; i < namen.length; i++) {
-        
-        if (i > 0) {
-            if (namen[i].author !== namen[(i-1)].author) {
+    let namen = data.map(function (q) {
+        return q.author;
+    });
+    console.log(namen);
 
-                $('#namen').append("<option value='" + namen[i].author + "'>" + "</option>")
-            }
+    var filtered = namen.filter(function(item, index){
+        return namen.indexOf(item) >= index;
+    });
+    console.log(filtered);
 
-        }
+    for(i=0; i< filtered.length; i++){
+        $('#namen').append("<option value='" + filtered[i] + "'>" + "</option>")
     }
+    
 });
-
 
 $('#btnAuth').click(function () {
     $('#input').show();
@@ -63,7 +65,7 @@ $('#input').keydown(function (e) {
 $("#btnQuo").click(quoteZoeken);
 
 
-//FRONT END SEARCH XD
+//A monument to all your sins
 // function quoteZoeken() {
 
 //     $('#namen').empty();
